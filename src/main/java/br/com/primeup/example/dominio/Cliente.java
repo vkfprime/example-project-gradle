@@ -1,5 +1,6 @@
 package br.com.primeup.example.dominio;
 
+
 public class Cliente {
 	
 	private String nome;
@@ -24,4 +25,11 @@ public class Cliente {
 		Tipo = tipoDeInst;
 	}
 
+    public String obterNomeCompleto() {
+
+        String result = nome.concat(Tipo.toString());
+        return result;
+     
+
+    }
 }
