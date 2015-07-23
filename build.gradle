@@ -10,11 +10,15 @@
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-
+apply plugin: 'maven'
 
 repositories {        
     jcenter()
     mavenCentral()
+}
+
+configurations {
+    deployerJars
 }
 
 subprojects {
@@ -37,4 +41,13 @@ dependencies {
  
    runtime group: 'org.springframework', name: 'spring-core', version: '2.5'	
    testCompile 'junit:junit:4.4'
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+        repository(url: "http://localhost:8088/nexus/content/repositories/Central-BR/") {
+            authentication(userName: "admin", password: "admin123")
+        }
+    }
 }
