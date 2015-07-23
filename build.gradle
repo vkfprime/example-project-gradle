@@ -7,23 +7,19 @@
  * user guide available at http://gradle.org/docs/2.5/userguide/tutorial_java_projects.html
  */
 
-// Apply the java plugin to add support for Java
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-// In this section you declare where to find the dependencies of your project
-repositories {
-    // Use 'jcenter' for resolving your dependencies.
-    // You can declare any Maven/Ivy/file repository here.
-    
-    mavenCentral()
+
+repositories {        
     jcenter()
+    mavenCentral()
 }
 
 subprojects {
     apply plugin: 'java'
-
-    // Disable the test report for the individual test task
+   
     test {
         reports.html.enabled = false
     }
@@ -31,20 +27,14 @@ subprojects {
 
 task testReport(type: TestReport) {
     destinationDir = file("$buildDir/reports/allTests")
+    
     // Include the results from the `test` task in all subprojects
     reportOn subprojects*.test
 }
 
-// In this section you declare the dependencies for your production and test code
+
 dependencies {
-    // The production code uses the SLF4J logging API at compile time
-    
-   compile 'junit:junit:4.12'
-   runtime group: 'org.springframework', name: 'spring-core', version: '2.5'
-	
-    // Declare the dependency for your favourite test framework you want to use in your tests.
-    // TestNG is also supported by the Gradle Test task. Just change the
-    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-    // 'test.useTestNG()' to your build script.
-    testCompile 'junit:junit:4.12'
+ 
+   runtime group: 'org.springframework', name: 'spring-core', version: '2.5'	
+   testCompile 'junit:junit:4.4'
 }
