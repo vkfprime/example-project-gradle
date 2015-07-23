@@ -13,8 +13,15 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 
 repositories {        
-    jcenter()
-    mavenCentral()
+
+    maven {
+         credentials {
+             username = 'admin'
+             password = 'admin123'
+         }
+           url "http://localhost:8088/nexus/content/groups/public"
+      }
+     jcenter()
 }
 
 configurations {
@@ -46,8 +53,13 @@ dependencies {
 uploadArchives {
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
-        repository(url: "http://localhost:8088/nexus/content/repositories/Central-BR/") {
+        repository(url: "http://localhost:8088/nexus/content/repositories/releases-br") {
             authentication(userName: "admin", password: "admin123")
         }
+        pom.version = '1.0'
+        pom.groupId = 'br.org'
+        pom.artifactId = 'exampleproject'
+        
+        
     }
 }
