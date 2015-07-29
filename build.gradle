@@ -26,6 +26,7 @@ repositories {
 
 configurations {
     deployerJars
+    libraries
 }
 
 subprojects {
@@ -44,10 +45,40 @@ task testReport(type: TestReport) {
 }
 
 
+
 dependencies {
  
-   runtime group: 'org.springframework', name: 'spring-core', version: '2.5'	
-   testCompile 'junit:junit:4.4'
+   libraries 'org.springframework:spring-core:2.5'	
+   libraries 'junit:junit:4.4'
+   
+   configurations.compile.extendsFrom(configurations.libraries)
+      
+}
+
+jar{
+	into('/'){
+		from configurations.libraries
+	}
+	from{
+		configurations.compile.collect{
+			it.isDirectory() ? it : zipTree(it)
+		}
+		configurations.runtime.collect{
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+
+	manifest{
+		attributes("Manifest-Version":"1.0",
+		"Created-By" : "1.7.0_79 (Oracle Corporation)",
+		"Main-Class":"br.com.primeup.example.dominio.Execucao",
+		"Class-Path": configurations.compile.collect {it.getName()}.join(' '))
+	}
+}
+
+
+task listJars <<{
+	configurations.libraries.each { File file -> println file.name }
 }
 
 uploadArchives {
