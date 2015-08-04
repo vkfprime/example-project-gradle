@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="br.com.primeup.example.dominio.ClienteTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-08-04T18:08:01" hostname="SRV-SHOWCASE" time="0.006">
   <properties/>
   <testcase name="testConcatenate" classname="br.com.primeup.example.dominio.ClienteTest" time="0.006"/>
+=======
+<testsuite name="br.com.primeup.example.dominio.ClienteTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2015-07-29T17:29:24" hostname="WKS-23" time="0.003">
+  <properties/>
+  <testcase name="testConcatenate" classname="br.com.primeup.example.dominio.ClienteTest" time="0.003"/>
+>>>>>>> 6c6d4da307226e0a6a2bcc753525da0903976682
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
